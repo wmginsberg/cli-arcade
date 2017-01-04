@@ -24,3 +24,18 @@
 * You have 7 rounds to win
 * Difficulty is based on max length of word
 * Quit by typing ctrl-c to kill the program
+
+
+## Unscrambler
+### How to play
+* Download `unscrambler.py`
+* Locate the file in your directory
+* Run `python unscrambler.py`
+
+### Features
+* Words are based off a public dictionary
+* You have infinite tries
+* Type Q to quit during a round
+* Difficulty is based on length of word
+
+
