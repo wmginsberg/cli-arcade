@@ -97,7 +97,7 @@ def deal_cards(deck):
 	player_ace = False
 
 	# Tell Player both of their cards, and the dealers showing card
-	print 'Dealer   :   [' + dealer_down['title'] + '][' + dealer_up['title'] + ']'#[??????????????]' + '[' + dealer_up['title'] + ']'
+	print 'Dealer   :   [??????????????]' + '[' + dealer_up['title'] + ']' #[' + dealer_down['title'] + '][' + dealer_up['title'] + ']'
 	print 'Your hand:   [' + player_one['title'] + '][' + player_two['title'] + ']' 
 	
 	# Check to see if either player has an Ace
@@ -128,8 +128,8 @@ def deal_cards(deck):
 	i = 4
 	while (True):
 		move = raw_input('Hit or Stay? (h/s)   ')
-		
 		if (move == 's'):
+			print 'Dealer   :   [' + dealer_down['title'] + '][' + dealer_up['title'] + ']'
 			while (dealer_total < 17 or dealer_ace):
 				print 'Dealer gets... ' + deck[i]['value']
 				dealer_total += int(deck[i]['value'])
@@ -137,11 +137,12 @@ def deal_cards(deck):
 				if (dealer_ace):
 					dealer_total -= 10
 					dealer_ace = False
+				print 'Dealer total:  ' + str(dealer_total)
 			if (dealer_total > 21):
 				print 'Dealer bust!   ' + str(dealer_total)
 				return 1
-			if (dealer_total < 21 and dealer_total >= 17):
-				print 'Dealer total:   ' + str(dealer_total)
+			elif (dealer_total <= 21 and dealer_total >= 17):
+				print 'Dealer total:  ' + str(dealer_total)
 				if (dealer_total < player_total):
 					return 1
 				elif (dealer_total > player_total):
@@ -159,6 +160,7 @@ def deal_cards(deck):
 					print 'Player total:   ' + str(player_total)
 				else:
 					print 'Player bust!   ' + str(player_total)
+					print 'Dealer total:  ' + str(dealer_total)
 					return 0
 			else:
 				print 'Player total:   ' + str(player_total)
