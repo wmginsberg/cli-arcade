@@ -8,7 +8,7 @@
 
 ### Features
 * Game is played with an infinite shuffled deck
-* No double-down or split
+* No double-down or split (yet :P)
 * Minimum bet of 10, maximum of 100
 * Quit by typing `quit` or ctrl-c to kill the program
 
