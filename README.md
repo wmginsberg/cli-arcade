@@ -1,4 +1,5 @@
 # a collection of cli-based games
+#### note: you may need to `pip install` a dependency or two to play
 
 ## Blackjack
 ### How to play
