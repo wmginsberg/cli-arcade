@@ -109,7 +109,25 @@ def check_for_win(board,turn):
 				if (count == 4):
 					print 'PLAYER X WINS'
 					return True
-
+	# diagonal positive slope
+	for c in range(BOARD_WIDTH):
+		for r in range(BOARD_HEIGHT + 1):
+			if (turn): # 0 turn 
+				if (board[r][c] == 3):
+					#print 'checking starting at ',c,r
+					if (c < BOARD_WIDTH-4 and r > 3):
+						#print c,r,', ',board[r-1][c+1],', ',board[r-2][c+2],', ',board[r-3][c+3]
+						if (board[r-1][c+1]==3 and board[r-1][c+1]==3 and board[r-3][c+3]==3):
+							print 'PLAYER 0 WINS'
+							return True
+			else: # X turn 
+				if (board[r][c] == 2):
+					#print 'checking starting at ',c,r
+					if (c < BOARD_WIDTH-4 and r > 3):
+						#print c,r,', ',board[r-1][c+1],', ',board[r-2][c+2],', ',board[r-3][c+3]
+						if (board[r-1][c+1]==2 and board[r-1][c+1]==2 and board[r-3][c+3]==2):
+							print 'PLAYER X WINS'
+							return True
 
 def make_deck():
 	pass
