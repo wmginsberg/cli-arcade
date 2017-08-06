@@ -29,19 +29,14 @@ def print_board(board):
 	for r in range(BOARD_HEIGHT + 1):
 		row = '|'
 		for c in range(BOARD_WIDTH):
-			#print '*',r,c
 			if (board[r][c] == 0):
 				row += '   |'
 			elif (board[r][c] == 3):
-				#print 'board[r][c] ' + str(board[r][c])
-				#print str(r) 
-				#print str(c)
 				row += ' 0 |'
 			elif (board[r][c] == 2):
 				row += ' X |'
 			else:
 				row += (' ' + BOTTOM_LABELS[c] + ' |')
-		#print board[r]
 		print row
 
 
@@ -64,6 +59,14 @@ def user_turn(board,turn):
 				else:
 					board[row][col] = 2
 				return board,True
+	else:
+		if col.upper()=='Q':
+			print 'Quitting...'
+			return board,False
+		else:
+			print 'Invalid input, must be A-G'
+			turn = not turn
+			return board,True
 
 def isValidCol(col):
 	return ((col in BOTTOM_LABELS) and (len(col) == 1))
