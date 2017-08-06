@@ -39,4 +39,18 @@
 * Type Q to quit during a round
 * Difficulty is based on length of word
 
+## Connect Four
+### How to play
+* Download `connectfour.py`
+* Locate the file in your directory
+* Run `python connectfour.py`
+
+### Features
+* 2 player game, Player 0 and Player X. Player 0 goes first
+* Type the column to place a chip into it
+* Victory can currently be achieved going horizontally or vertically
+* Currently, you can only win diagonally on a positive slope
+* Hasn't been entirely tested so there are some bugs
+* Type Q or q to quit during a game
+
 
