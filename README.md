@@ -25,7 +25,7 @@
 * You have 7 rounds to win
 * Difficulty is based on max length of word
 * Quit by typing ctrl-c to kill the program
-
+* Full error checking not entirely implemented
 
 ## Unscrambler
 ### How to play
