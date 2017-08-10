@@ -174,13 +174,9 @@ def startGame():
         print "                                "
     
     if (isGameOver()):
-        guess_letters = []
-        wrong_letters = []
         print "GAME OVER, YOU WIN!!!!"
         return True
     elif (round_num >= 7):
-        guess_letters = []
-        wrong_letters = []
         print "GAME OVER, YOU LOSE!!!"
         return True
 
@@ -190,5 +186,7 @@ while (startGame()):
         print "Okay, shutting down..."
         break
     else:
-        "New game beginning..."
+        guess_letters = []
+        wrong_letters = []
+        print "New game beginning..."
 
