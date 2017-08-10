@@ -174,8 +174,21 @@ def startGame():
         print "                                "
     
     if (isGameOver()):
+        guess_letters = []
+        wrong_letters = []
         print "GAME OVER, YOU WIN!!!!"
+        return True
     elif (round_num >= 7):
+        guess_letters = []
+        wrong_letters = []
         print "GAME OVER, YOU LOSE!!!"
+        return True
 
-startGame()
+while (startGame()):
+    play_again = raw_input("Would you like to play again?  y/n   ")
+    if (play_again.upper() == 'N'):
+        print "Okay, shutting down..."
+        break
+    else:
+        "New game beginning..."
+
