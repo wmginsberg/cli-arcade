@@ -4,6 +4,8 @@ BOARD_HEIGHT = 8
 BOARD_WIDTH = 7
 BOTTOM_LABELS = ['A','B','C','D','E','F','G']
 
+LAST_MOVE = [0,0]
+
 # Functions
 def game_start():
 	board = make_board()
@@ -33,8 +35,10 @@ def print_board(board):
 				row += '   |'
 			elif (board[r][c] == 3):
 				row += ' 0 |'
+				LAST_MOVE = [r,c]
 			elif (board[r][c] == 2):
 				row += ' X |'
+				LAST_MOVE = [r,c]
 			else:
 				row += (' ' + BOTTOM_LABELS[c] + ' |')
 		print row
@@ -131,6 +135,7 @@ def check_for_win(board,turn):
 						if (board[r-1][c+1]==2 and board[r-1][c+1]==2 and board[r-3][c+3]==2):
 							print 'PLAYER X WINS'
 							return True
+
 
 def make_deck():
 	pass

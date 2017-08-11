@@ -44,7 +44,7 @@ def start_game():
 
 	print 'Time = ' + str(int(end - start))
 	print 'Score = ' + str(score) + ' / 10'
-	print 'Total = ' + str(int((end - start))*score)
+	#print 'Total = ' + str(int((end - start))*score*difficulty)
 
 
 def get_maximum(diff):
