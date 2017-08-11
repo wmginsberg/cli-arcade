@@ -60,8 +60,8 @@
 * Run `python speedmath.py`
 
 ### Features
-* Hit enter to begin
-* You will receive 10 math problems incl. -, +, and * for single digit numbers
+* Hit enter to begin and choose a level
+* You will receive 10 math problems incl. -, +, and * 
 * Answer as fast as you can and your time and score will be returned
 * Your total is your time * score. 
 
