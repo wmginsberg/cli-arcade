@@ -222,10 +222,9 @@ class TestMethods(unittest.TestCase):
 		self.assertTrue(check_for_win(b2,0))
 
 # Run the test
-unittest.main()
+#unittest.main()
 
 
 
 
-#game_start()
-#tests()
+game_start()
