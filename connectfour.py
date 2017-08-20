@@ -1,4 +1,5 @@
 import random
+import unittest
 
 BOARD_HEIGHT = 8
 BOARD_WIDTH = 7
@@ -23,6 +24,11 @@ def game_start():
 	
 
 def make_board():
+	board = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]
+	board.append(BOTTOM_LABELS)
+	return board
+
+def make_test_board():
 	board = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]
 	board.append(BOTTOM_LABELS)
 	return board
@@ -124,7 +130,7 @@ def check_for_win(board,turn):
 					#print 'checking starting at ',c,r
 					if (c < BOARD_WIDTH-4 and r > 3):
 						#print c,r,', ',board[r-1][c+1],', ',board[r-2][c+2],', ',board[r-3][c+3]
-						if (board[r-1][c+1]==3 and board[r-1][c+1]==3 and board[r-3][c+3]==3):
+						if (board[r-1][c+1]==3 and board[r-2][c+2]==3 and board[r-3][c+3]==3):
 							print 'PLAYER 0 WINS'
 							return True
 			else: # X turn 
@@ -132,7 +138,26 @@ def check_for_win(board,turn):
 					#print 'checking starting at ',c,r
 					if (c < BOARD_WIDTH-4 and r > 3):
 						#print c,r,', ',board[r-1][c+1],', ',board[r-2][c+2],', ',board[r-3][c+3]
-						if (board[r-1][c+1]==2 and board[r-1][c+1]==2 and board[r-3][c+3]==2):
+						if (board[r-1][c+1]==2 and board[r-2][c+2]==2 and board[r-3][c+3]==2):
+							print 'PLAYER X WINS'
+							return True
+	# diagonal negative slope
+	for c in range(BOARD_WIDTH):
+		for r in range(BOARD_HEIGHT+1):
+			if (turn): # 0 turn 
+				if (board[r][c] == 3):
+					#print 'checking starting at ',c,r
+					if (c < 4 and r > BOARD_HEIGHT-3):
+						#print c,r,', ',board[r-1][c+1],', ',board[r-2][c+2],', ',board[r-3][c+3]
+						if (board[r+1][c-1]==3 and board[r+2][c-2]==3 and board[r+3][c-3]==3):
+							print 'PLAYER 0 WINS'
+							return True
+			else: # X turn 
+				if (board[r][c] == 2):
+					#print 'checking starting at ',c,r
+					if (c < 4 and r > BOARD_HEIGHT-3):
+						#print c,r,', ',board[r-1][c+1],', ',board[r-2][c+2],', ',board[r-3][c+3]
+						if (board[r+1][c-1]==2 and board[r+2][c-2]==2 and board[r+3][c-3]==2):
 							print 'PLAYER X WINS'
 							return True
 
@@ -140,7 +165,67 @@ def check_for_win(board,turn):
 def make_deck():
 	pass
 
+class TestMethods(unittest.TestCase):
+
+	def test_horizontal_x(self):
+		b = make_test_board()
+		b[2][3] = 2
+		b[2][4] = 2
+		b[2][5] = 2
+		b[2][6] = 2
+		self.assertFalse(check_for_win(b,1))
+		self.assertTrue(check_for_win(b,0))
+
+	def test_horizontal_o(self):
+		b = make_test_board()
+		b[4][0] = 3
+		b[4][1] = 3
+		b[4][2] = 3
+		b[4][3] = 3
+		self.assertTrue(check_for_win(b,1))
+		self.assertFalse(check_for_win(b,0))
+
+	def test_vertical_x(self):
+		b = make_test_board()
+		b[2][2] = 2
+		b[3][2] = 2
+		b[4][2] = 2
+		b[5][2] = 2
+		self.assertFalse(check_for_win(b,1))
+		self.assertTrue(check_for_win(b,0))
+
+	def test_vertical_o(self):
+		b = make_test_board()
+		b[1][6] = 3
+		b[2][6] = 3
+		b[3][6] = 3
+		b[4][6] = 3
+		self.assertTrue(check_for_win(b,1))
+		self.assertFalse(check_for_win(b,0))
+
+	def test_positive_diagonal_x(self):
+		b = make_test_board()
+		b[1][4] = 2
+		b[2][3] = 2
+		b[3][2] = 2
+		b[4][1] = 2
+		self.assertFalse(check_for_win(b,1))
+		self.assertTrue(check_for_win(b,0))
+
+		b2 = make_test_board()
+		b2[0][6] = 2
+		b2[1][5] = 2
+		b2[2][4] = 2
+		b2[3][3] = 2
+		print_board(b2)
+		self.assertFalse(check_for_win(b2,1))
+		self.assertTrue(check_for_win(b2,0))
+
+# Run the test
+unittest.main()
 
 
-game_start()
 
+
+#game_start()
+#tests()
