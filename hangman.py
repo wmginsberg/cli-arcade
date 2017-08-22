@@ -177,6 +177,7 @@ def startGame():
         print "GAME OVER, YOU WIN!!!!"
         return True
     elif (round_num >= 7):
+        print "The word is: " + word_data[1]
         print "GAME OVER, YOU LOSE!!!"
         return True
 
