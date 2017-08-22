@@ -86,8 +86,8 @@ def chooseAndPrintWord(difficulty):
     random.shuffle(words);
     i = 0
     word = words[i]
-    diff_dict = {1:5,2:7,3:15}
-    while (len(word) >= diff_dict[difficulty]):
+    diff_dict = [5,7,13];
+    while (len(word) >= diff_dict[difficulty-1]):
         i+=1
         word = words[i]
     guess_string = "  "
