@@ -153,14 +153,12 @@ def check_for_win(board,turn):
 							print 'PLAYER X WINS'
 							return True
 
-
-def make_deck():
-	pass
+#game_start()
 
 
 '''
 
-🚧 TESTING ZONE!!! 🚧
+TESTING ZONE!!! 
 
 '''
 class TestMethods(unittest.TestCase):
@@ -211,18 +209,14 @@ class TestMethods(unittest.TestCase):
 		self.assertTrue(check_for_win(b,0))
 
 		b2 = make_test_board()
-		b2[0][6] = 2
 		b2[1][5] = 2
 		b2[2][4] = 2
 		b2[3][3] = 2
+		b2[4][2] = 2
 		print_board(b2)
 		self.assertFalse(check_for_win(b2,1))
 		self.assertTrue(check_for_win(b2,0))
+		#top row not being read
 
 # Run the test
-#unittest.main()
-
-
-
-
-game_start()
+unittest.main()
