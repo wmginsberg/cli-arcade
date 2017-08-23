@@ -60,8 +60,12 @@ def startGame():
         elif (user_input == "Q" or user_input == "q"):
             print "Quitting..."
             break
-        elif (attempt > 3):
+        elif (attempt == 3 or attempt>5):
             print "Try again! or type Q to quit"
+        elif (attempt == 5):
+            tip = raw_input("Would you like a hint?  y/n   ")
+            if (tip.upper() == 'Y'):
+                print "The first letter is " + answer[0]
         else:
             print "Try again!"
 
