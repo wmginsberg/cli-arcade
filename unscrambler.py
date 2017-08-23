@@ -56,34 +56,21 @@ def startGame():
         attempt += 1
         if (user_input == answer):
             print "Correct!!"
-            break
-        elif (user_input == "Q"):
+            return True
+        elif (user_input == "Q" or user_input == "q"):
             print "Quitting..."
             break
         elif (attempt > 3):
             print "Try again! or type Q to quit"
         else:
             print "Try again!"
-    
-    
-    # print " ".join(guess_letters) #word_data[0]
-    # while (round_num < 7 and not isGameOver()): 
-    #     round_data = runTheRound(word_data[1])
-        
-    #     if round_data[1] == False:
-    #         print "Wrong! Try again. "
-    #         round_num+=1
 
-    #     print renderHangman(round_num)
-    #     print " ".join(guess_letters)#round_data[0]
-    #     print "Wrong Letters:    " + " ".join(wrong_letters)
-    #     print "                                "
-    #     print "--------------------------------"
-    #     print "                                "
-    
-    # if (isGameOver()):
-    #     print "GAME OVER, YOU WIN!!!!"
-    # elif (round_num >= 7):
-    #     print "GAME OVER, YOU LOSE!!!"
-
-startGame()
+while (startGame()):
+    play_again = raw_input("Would you like to play again?  y/n   ")
+    if (play_again.upper() == 'N'):
+        print "Okay, shutting down..."
+        break
+    else:
+        words = []
+        word_dict = [[],[],[]] 
+        print "New game beginning..."
