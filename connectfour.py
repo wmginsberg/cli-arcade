@@ -205,6 +205,7 @@ class TestMethods(unittest.TestCase):
 		b[2][3] = 2
 		b[3][2] = 2
 		b[4][1] = 2
+		print_board(b)
 		self.assertFalse(check_for_win(b,1))
 		self.assertTrue(check_for_win(b,0))
 
@@ -216,6 +217,26 @@ class TestMethods(unittest.TestCase):
 		print_board(b2)
 		self.assertFalse(check_for_win(b2,1))
 		self.assertTrue(check_for_win(b2,0))
+		#top row not being read
+
+	def test_positive_diagonal_x(self):
+		b = make_test_board()
+		b[1][4] = 3
+		b[2][3] = 3
+		b[3][2] = 3
+		b[4][1] = 3
+		print_board(b)
+		self.assertFalse(check_for_win(b,0))
+		self.assertTrue(check_for_win(b,1))
+
+		b2 = make_test_board()
+		b2[1][5] = 3
+		b2[2][4] = 3
+		b2[3][3] = 3
+		b2[4][2] = 3
+		print_board(b2)
+		self.assertFalse(check_for_win(b2,0))
+		self.assertTrue(check_for_win(b2,1))
 		#top row not being read
 
 # Run the test
