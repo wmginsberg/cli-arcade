@@ -1,9 +1,13 @@
 import random
 import unittest
+from termcolor import colored as color
 
 BOARD_HEIGHT = 8
 BOARD_WIDTH = 7
 BOTTOM_LABELS = ['A','B','C','D','E','F','G']
+
+O_COLOR = 'green'
+X_COLOR = 'cyan'
 
 LAST_MOVE = [0,0]
 done = True
@@ -20,7 +24,7 @@ def game_start():
 		b,cont = user_turn(board, turn)
 		end = check_for_win(board, turn)
 		if end:
-			print_board(b)
+			#print_board(b)
 			return True
 	
 
@@ -48,7 +52,7 @@ def print_board(board):
 				LAST_MOVE = [r,c]
 			else:
 				row += (' ' + BOTTOM_LABELS[c] + ' |')
-		print row
+		print color(row,'white')
 
 
 
@@ -70,7 +74,7 @@ def user_turn(board,turn):
 				else:
 					board[row][col] = 2
 				return board,True
-		print 'Invalid input, column is full'
+		print color('Invalid input, column is full','red')
 		done = False
 		# if turn:
 		# 	turn = False
@@ -82,7 +86,7 @@ def user_turn(board,turn):
 			print 'Quitting...'
 			return board,False
 		else:
-			print 'Invalid input, must be A-G'
+			print color('Invalid input, must be A-G','red')
 			return board,True
 
 def isValidCol(col):
@@ -99,7 +103,8 @@ def check_for_win(board,turn):
 				else:
 					count = 0
 				if (count == 4):
-					print 'PLAYER 0 WINS'
+					print_winning_board(board,[[r,c],[r,c-1],[r,c-2],[r,c-3]],1)
+					print color('PLAYER 0 WINS',O_COLOR)
 					return True
 			else: # X turn 
 				if (board[r][c] == 2):
@@ -107,7 +112,8 @@ def check_for_win(board,turn):
 				else:
 					count = 0
 				if (count == 4):
-					print 'PLAYER X WINS'
+					print_winning_board(board,[[r,c],[r,c-1],[r,c-2],[r,c-3]],0)
+					print color('PLAYER X WINS',X_COLOR)
 					return True
 	# vertical
 	count = 0
@@ -119,7 +125,8 @@ def check_for_win(board,turn):
 				else:
 					count = 0
 				if (count == 4):
-					print 'PLAYER 0 WINS'
+					print_winning_board(board,[[r,c],[r-1,c],[r-2,c],[r-3,c]],1)
+					print color('PLAYER 0 WINS',O_COLOR)
 					return True
 			else: # X turn 
 				if (board[r][c] == 2):
@@ -127,7 +134,8 @@ def check_for_win(board,turn):
 				else:
 					count = 0
 				if (count == 4):
-					print 'PLAYER X WINS'
+					print_winning_board(board,[[r,c],[r-1,c],[r-2,c],[r-3,c]],0)
+					print color('PLAYER X WINS',X_COLOR)
 					return True
 	# diagonal positive slope
 	for c in range(BOARD_WIDTH):
@@ -136,13 +144,15 @@ def check_for_win(board,turn):
 				if (board[r][c] == 3):
 					if (c < BOARD_WIDTH-4 and r > 3):
 						if (board[r-1][c+1]==3 and board[r-2][c+2]==3 and board[r-3][c+3]==3):
-							print 'PLAYER 0 WINS'
+							print_winning_board(board,[[r,c][r-1,c+1],[r-2,c+2],[r-3,c+3]],1)
+							print color('PLAYER 0 WINS',O_COLOR)
 							return True
 			else: # X turn 
 				if (board[r][c] == 2):
 					if (c < BOARD_WIDTH-4 and r > 3):
 						if (board[r-1][c+1]==2 and board[r-2][c+2]==2 and board[r-3][c+3]==2):
-							print 'PLAYER X WINS'
+							print_winning_board(board,[[r,c],[r-1,c+1],[r-2,c+2],[r-3,c+3]],0)
+							print color('PLAYER X WINS',X_COLOR)
 							return True
 	# diagonal negative slope --- DOESNT WORK
 	for c in range(BOARD_WIDTH):
@@ -152,14 +162,38 @@ def check_for_win(board,turn):
 				if (board[r][c] == 3):
 					if (c < 4 and r < BOARD_HEIGHT-3):
 						if (board[r+1][c+1]==3 and board[r+2][c+2]==3 and board[r+3][c+3]==3):
-							print 'PLAYER 0 WINS'
+							print_winning_board(board,[[r,c],[r+1,c+1],[r+2,c+2],[r+3,c+3]],1)
+							print color('PLAYER 0 WINS',O_COLOR)
 							return True
 			else: # X turn 
 				if (board[r][c] == 2):
 					if (c < 4 and r < BOARD_HEIGHT-3):
 						if (board[r+1][c+1]==2 and board[r+2][c+2]==2 and board[r+3][c+3]==2):
-							print 'PLAYER X WINS'
+							print_winning_board(board,[[r,c],[r+1,c+1],[r+2,c+2],[r+3,c+3]],0)
+							print color('PLAYER X WINS',X_COLOR)
 							return True
+
+
+def print_winning_board(board,tuples,turn):
+	for r in range(BOARD_HEIGHT + 1):
+		row = '|'
+		for c in range(BOARD_WIDTH):
+			if [r,c] in tuples:
+				if (turn == 0):
+					row += (' '+color('X',X_COLOR)+' |')
+				else:
+					row += (' '+color('O',O_COLOR)+' |')
+			elif (board[r][c] == 0):
+				row += '   |'
+			elif (board[r][c] == 3):
+				row += ' 0 |'
+				LAST_MOVE = [r,c]
+			elif (board[r][c] == 2):
+				row += ' X |'
+				LAST_MOVE = [r,c]
+			else:
+				row += (' ' + BOTTOM_LABELS[c] + ' |')
+		print color(row,'white')
 
 while (game_start()):
     play_again = raw_input("Would you like to play again?  y/n   ")
@@ -168,6 +202,9 @@ while (game_start()):
         break
     else:
         print "New game beginning..."
+
+
+
 
 '''
 
