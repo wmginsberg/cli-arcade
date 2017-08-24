@@ -154,7 +154,7 @@ def check_for_win(board,turn):
 							print 'PLAYER X WINS'
 							return True
 
-#game_start()
+game_start()
 
 
 '''
@@ -271,4 +271,4 @@ class TestMethods(unittest.TestCase):
 		#top row not being read
 
 # Run the test
-unittest.main()
+#unittest.main()
