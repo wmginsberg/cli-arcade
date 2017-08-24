@@ -144,7 +144,7 @@ def check_for_win(board,turn):
 				if (board[r][c] == 3):
 					if (c < BOARD_WIDTH-4 and r > 3):
 						if (board[r-1][c+1]==3 and board[r-2][c+2]==3 and board[r-3][c+3]==3):
-							print_winning_board(board,[[r,c][r-1,c+1],[r-2,c+2],[r-3,c+3]],1)
+							print_winning_board(board,[[r,c],[r-1,c+1],[r-2,c+2],[r-3,c+3]],1)
 							print color('PLAYER 0 WINS',O_COLOR)
 							return True
 			else: # X turn 
