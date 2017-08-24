@@ -141,9 +141,10 @@ def check_for_win(board,turn):
 	for c in range(BOARD_WIDTH):
 		for r in range(BOARD_HEIGHT+1):
 			if (turn): # 0 turn 
+				print c,r,board[r][c]
 				if (board[r][c] == 3):
-					if (c < 4 and r > BOARD_HEIGHT-3):
-						if (board[r+1][c-1]==3 and board[r+2][c-2]==3 and board[r+3][c-3]==3):
+					if (c < 4 and r > 3):
+						if (board[r+1][c+1]==3 and board[r+2][c+2]==3 and board[r+3][c+3]==3):
 							print 'PLAYER 0 WINS'
 							return True
 			else: # X turn 
