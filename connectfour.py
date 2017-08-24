@@ -6,6 +6,7 @@ BOARD_WIDTH = 7
 BOTTOM_LABELS = ['A','B','C','D','E','F','G']
 
 LAST_MOVE = [0,0]
+done = True
 
 # Functions
 def game_start():
@@ -20,7 +21,7 @@ def game_start():
 		end = check_for_win(board, turn)
 		if end:
 			print_board(b)
-			break
+			return True
 	
 
 def make_board():
@@ -60,7 +61,7 @@ def user_turn(board,turn):
 			if ((col == BOTTOM_LABELS[i]) and found==False):
 				col = i
 				found = True
-		for row in range(BOARD_HEIGHT,0,-1):
+		for row in range(BOARD_HEIGHT,-1,-1):
 			if board[row][col] != 0:
 				continue
 			else:
@@ -69,13 +70,19 @@ def user_turn(board,turn):
 				else:
 					board[row][col] = 2
 				return board,True
+		print 'Invalid input, column is full'
+		done = False
+		# if turn:
+		# 	turn = False
+		# else:
+		# 	turn = True
+		return board,True
 	else:
 		if col.upper()=='Q':
 			print 'Quitting...'
 			return board,False
 		else:
 			print 'Invalid input, must be A-G'
-			turn = not turn
 			return board,True
 
 def isValidCol(col):
@@ -154,8 +161,13 @@ def check_for_win(board,turn):
 							print 'PLAYER X WINS'
 							return True
 
-game_start()
-
+while (game_start()):
+    play_again = raw_input("Would you like to play again?  y/n   ")
+    if (play_again.upper() == 'N'):
+        print "Okay, shutting down..."
+        break
+    else:
+        print "New game beginning..."
 
 '''
 
